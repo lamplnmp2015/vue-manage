@@ -1,8 +1,12 @@
 <template>
 <header>
   <div class="l-content">
-    <el-button plain icon="el-icon-menu" size="mini" @click="menuChang"/>
-    <h3 style="color:#fff">首页</h3>
+    <el-button plain icon="el-icon-menu" size="mini" @click="menuChange"/>
+    <!-- <h3 style="color:#fff">首页</h3> -->
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item :class="index == tags.length-1 ? 'redColor':'myColor'" v-for="(item,index) in tags" :key="item.path" :to="{ path:item.path }">{{item.label}}</el-breadcrumb-item>
+      
+    </el-breadcrumb>
   </div>
   <div class="r-content">
     <el-dropdown trigger="click" size='mini'>
@@ -19,6 +23,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
 data() {
  return{
@@ -35,10 +40,21 @@ watch: {
 },
 //属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。主要当作属性来使用；
 computed: { 
+  ...mapState({
+    tags:state=>state.tab.tabsList
+  }),
+  tag(){
+    console.log(this.$store.state.tab.tabsList);
+    // return 
+    
+  }
+  // tags(){
+  //   return this.$store.state.tab.tabList
+  // }
 },
 //方法表示一个具体的操作，主要书写业务逻辑；
 methods: { 
-  menuChang(){
+  menuChange(){
     this.$store.commit('collapseMenu')
   }
 },
@@ -79,4 +95,21 @@ header{
       border-radius: 50%;
     }
   }
+  .el-breadcrumb__inner{
+    color: white;
+  }
+  .myColor /deep/ .el-breadcrumb__inner{
+    color: #fff;
+  }
+  .redColor /deep/ .el-breadcrumb__inner{
+    // color: red;
+  }
+  
+  .myColor ,.redColor /deep/ .el-breadcrumb__inner:hover{
+    color: hsl(223, 89%, 59%) ;
+  }
+  // //或者这样写
+  // .myColor >>> .el-breadcrumb__inner {
+  //   color: #fff ;
+  // }
 </style>

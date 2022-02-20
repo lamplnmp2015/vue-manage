@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-row>
+    <!-- <el-row>
       <el-tag effect="dark">首页</el-tag>
-    </el-row>
+    </el-row> -->
     <el-table
       :data="tableData"
       style="width:100%"
@@ -169,7 +169,7 @@ mounted() {
 }
 </script>
 
-<style scoped>
+<style>
   .el-main{
     line-height: 55px;
   }

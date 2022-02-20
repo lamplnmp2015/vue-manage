@@ -28,7 +28,9 @@ import {
   Row,
   Card,
   Col,
-  Tag
+  Tag,
+  Breadcrumb,
+  BreadcrumbItem
 } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -52,8 +54,8 @@ Vue.use(Row);
 Vue.use(Card);
 Vue.use(Col);
 Vue.use(Tag);
-// Vue.use(MessageBox);
-// Vue.use(Message);
+Vue.use(Breadcrumb);
+Vue.use(BreadcrumbItem);
 Vue.use(router);
 // Vue.use(Vuex);
 Vue.prototype.$confirm = MessageBox.confirm

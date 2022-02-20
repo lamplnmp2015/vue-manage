@@ -10,12 +10,10 @@
       active-text-color="#ffd04b"
       :collapse='isCollapse'
       :collapse-transition='false'
-      
-     
       >
         
         <h3 style="padding:15px 5px 5px 5px">{{titleChange}}</h3>
-        <el-menu-item v-for="(item,key) in noChildren" :index="item.path" :key='item.path'@click='clickMenu(item)'>
+        <el-menu-item v-for="(item,key) in noChildren" :index="item.path" :key='item.path' @click='clickMenu(item)'>
           <i :class="'el-icon-'+item.icon"></i>
           <span slot="title">{{item.label}}</span>
         </el-menu-item>
@@ -47,8 +45,15 @@ data() {
  return{
   //  isCollapse:true,
    menuList:[
+    //  {
+    //    path:'/',
+    //    name:'Home',
+    //    label:'首页',
+    //    icon:'s-home',
+    //    url:'Home/Home'
+    //  },
      {
-       path:'/',
+       path:'/home',
        name:'Home',
        label:'首页',
        icon:'s-home',
@@ -74,44 +79,23 @@ data() {
        icon:'location',
        children:[
          {
-           path:'/page1',
-           name:'Page1',
+           path:'/other/page1',
+           name:'Other/Page1',
            label:'页面1',
            icon:'setting',
-           url:'Other/PageOne'
+           url:'Other/Page1'
            
          },
          {
-           path:'/page2',
-           name:'Page2',
+           path:'/other/page2',
+           name:'Other/Page2',
            label:'页面2',
            icon:'setting',
-           url:'Other/PageTwo'   
+           url:'Other/Page2'   
          },
        ]
      },
-     {
-       path:'/other1',
-       label:'其他1',
-       icon:'location',
-       children:[
-         {
-           path:'/page11',
-           name:'page11',
-           label:'页面1',
-           icon:'setting',
-           url:'Other/PageOne'
-           
-         },
-         {
-           path:'/page12',
-           name:'page12',
-           label:'页面12',
-           icon:'setting',
-           url:'Other/PageTwo'   
-         },
-       ]
-     },
+     
    ]
  }
 },
@@ -141,15 +125,17 @@ computed: {
 //方法表示一个具体的操作，主要书写业务逻辑；
 methods: { 
   handleOpen(key, keyPath) {
-    console.log(key, keyPath);
+    // console.log(key, keyPath);
   },
   handleClose(key, keyPath) {
-    console.log(key, keyPath);
+    // console.log(key, keyPath);
   },
   clickMenu(item){
+    // if(item.name == this.$route.name) return 
     this.$router.push({
       name:item.name
     })
+    this.$store.commit('selectMenu',item)
   }
 },
 //请求数据

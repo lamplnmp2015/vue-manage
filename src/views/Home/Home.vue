@@ -1,9 +1,9 @@
 <template>
 <div>
-  <el-row>
+  <!-- <el-row>
     <el-tag effect="dark">首页</el-tag>
-  </el-row>
-  <el-row class="home" :gutter="20" :style="{'margin-top':'20px'}" type="flex">
+  </el-row> -->
+  <el-row class="home" :gutter="20" :style="{}" type="flex">
     <el-col :span='8' style="height:100%">
       <el-card class="box-card" shadow="hover">
         <div class="user">
